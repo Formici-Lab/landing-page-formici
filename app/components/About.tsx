@@ -1,6 +1,7 @@
 import Reveal from "./Reveal";
 import MotionLinkButton from "./MotionLinkButton";
 import FormiciLogo from "./FormiciLogo";
+import CategoryMarquee from "./CategoryMarquee";
 
 export default function About() {
   return (
@@ -25,21 +26,14 @@ export default function About() {
             </MotionLinkButton>
           </Reveal>
         </div>
-        <div className="flex w-full flex-col items-start justify-between gap-10 lg:flex-row">
+        <div className="flex w-full flex-col gap-10">
           <Reveal>
             <h2 className="text-orange font-sans text-4xl font-extrabold whitespace-nowrap lg:text-[56px]">
               Specialising in
             </h2>
           </Reveal>
-          <Reveal delay={0.1} className="text-brown flex flex-col items-start gap-3 font-sans text-2xl font-bold lg:text-[32px]">
-            <p>Logo & Brand Design</p>
-            <p>Illustration</p>
-            <p>Social Media Design</p>
-          </Reveal>
-          <Reveal delay={0.2} className="text-brown flex flex-col items-start gap-3 font-sans text-2xl font-bold lg:text-[32px]">
-            <p>Web Design</p>
-            <p>Web Development</p>
-            <p>Web App</p>
+          <Reveal delay={0.1}>
+            <CategoryMarquee />
           </Reveal>
         </div>
       </div>

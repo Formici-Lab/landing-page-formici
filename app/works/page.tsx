@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import HeroWorks from "../components/HeroWorks";
 import WorkCarousel from "../components/WorkCarousel";
 import Footer from "../components/Footer";
+import CategoryMarquee from "../components/CategoryMarquee";
 
 export const metadata: Metadata = {
   title: "Our Works — Formici Creative Lab",
@@ -16,6 +17,9 @@ export default function Works() {
       <NavBar />
       <HeroWorks />
       <WorkCarousel />
+      <section className="bg-cream w-full overflow-hidden py-10">
+        <CategoryMarquee />
+      </section>
       <Footer />
     </main>
   );

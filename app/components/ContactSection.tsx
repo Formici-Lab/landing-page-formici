@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import ContactForm from "./ContactForm";
+import SpinningAsterisk from "./SpinningAsterisk";
 
 const socialLinks = ["Instagram", "Behance", "LinkedIn"];
 
@@ -12,8 +13,9 @@ export default function ContactSection() {
             <p className="text-orange font-sans text-sm font-bold tracking-wide uppercase">
               Get in touch
             </p>
-            <h2 className="text-brown font-sans text-3xl font-extrabold lg:text-[40px]">
-              Have a project in mind?
+            <h2 className=" flex items-center gap-2 text-brown font-sans text-3xl font-extrabold lg:text-[40px]">
+              <p>Have a project in mind?</p>
+              <SpinningAsterisk className="h-[0.7em] w-[0.7em]" />
             </h2>
             <p className="text-brown font-sans text-lg font-medium opacity-80">
               Tell us a bit about what you&apos;re working on and we&apos;ll get back
