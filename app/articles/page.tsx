@@ -6,6 +6,7 @@ import type { SanityImageSource } from "@sanity/image-url";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import Reveal from "../components/Reveal";
+import ArticlesEmptyState from "../components/ArticlesEmptyState";
 import { client } from "../../sanity/lib/client";
 import { urlFor } from "../../sanity/lib/image";
 import { ARTICLES_QUERY } from "../../sanity/lib/queries";
@@ -59,9 +60,7 @@ export default async function ArticlesPage() {
 
       <section className="bg-cream min-h-[40vh] px-6 py-16 md:px-[100px] lg:px-[200px]">
         {articles.length === 0 ? (
-          <p className="text-brown/70 font-headline text-lg">
-            Stay tuned — a fresh article is on its way. Coming soon!
-          </p>
+          <ArticlesEmptyState />
         ) : (
           <div className="mx-auto grid w-full max-w-[1040px] grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (

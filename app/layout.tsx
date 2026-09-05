@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Host_Grotesk, Mozilla_Headline } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "./components/SmoothScroll";
 
 const hostGrotesk = Host_Grotesk({
   variable: "--font-host-grotesk",
@@ -26,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${hostGrotesk.variable} ${mozillaHeadline.variable} antialiased`}>
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
