@@ -44,13 +44,25 @@ const projects: ProjectDetail[] = [
   },
 ];
 
+const categories = ["All", ...new Set(projects.map((p) => p.category))];
+
 export default function WorkCarousel() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
   const [canScrollMore, setCanScrollMore] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [selected, setSelected] = useState<ProjectDetail | null>(null);
+  const [activeCategory, setActiveCategory] = useState("All");
   const dragState = useRef({ startX: 0, scrollLeft: 0, moved: false });
+
+  const filteredProjects =
+    activeCategory === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
+
+  useEffect(() => {
+    if (scrollerRef.current) scrollerRef.current.scrollLeft = 0;
+  }, [activeCategory]);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -89,10 +101,26 @@ export default function WorkCarousel() {
 
   return (
     <section className="bg-cream flex flex-col gap-8 py-16">
-      <Reveal className="px-6 md:px-[100px] lg:px-[200px]">
-        <h2 className="text-orange font-sans text-4xl font-extrabold lg:text-[56px]">
+      <Reveal className="flex flex-col gap-4 px-6 md:flex-row md:items-center md:justify-between md:px-[100px] lg:px-[200px]">
+        <h2 className="text-orange font-sans text-3xl font-extrabold lg:text-[48px]">
           Selected Works
         </h2>
+        <div className="flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => setActiveCategory(category)}
+              className={`rounded-full px-4 py-2 font-sans text-sm font-bold whitespace-nowrap transition-colors ${
+                activeCategory === category
+                  ? "bg-orange text-brown"
+                  : "text-brown/60 border-brown/20 hover:border-brown/40 border"
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
       </Reveal>
       <div className="relative">
         <div
@@ -102,11 +130,12 @@ export default function WorkCarousel() {
           onPointerUp={endDrag}
           onPointerLeave={endDrag}
           onDragStart={(e) => e.preventDefault()}
-          className={`no-scrollbar flex overflow-x-auto px-2 pb-4 md:px-[100px] lg:px-[200px] ${
+          className={`no-scrollbar flex overflow-x-auto pb-4 ${
             isDragging ? "cursor-grabbing select-none" : "cursor-grab snap-x snap-mandatory"
           } gap-4`}
         >
-          {projects.map((project, i) => (
+          <div aria-hidden className="w-2 shrink-0 snap-start md:w-25 lg:w-50" />
+          {filteredProjects.map((project, i) => (
             <Reveal
               key={project.title}
               delay={i * 0.05}
@@ -142,7 +171,7 @@ export default function WorkCarousel() {
               </p>
             </Reveal>
           ))}
-          <div ref={sentinelRef} aria-hidden className="w-px shrink-0" />
+          <div ref={sentinelRef} aria-hidden className="w-2 shrink-0 md:w-25 lg:w-50" />
         </div>
 
         {canScrollMore && (
