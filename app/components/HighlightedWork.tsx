@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "./Reveal";
 import MotionButton from "./MotionButton";
 
@@ -80,9 +81,11 @@ export default function HighlightedWork() {
         </div>
       </div>
 
-      <MotionButton className="bg-orange text-brown rounded-full px-10 py-5 font-sans text-lg font-bold">
-        More Works
-      </MotionButton>
+      <Link href="/works">
+        <MotionButton className="bg-orange text-brown rounded-full px-10 py-5 font-sans text-lg font-bold">
+          More Works
+        </MotionButton>
+      </Link>
     </section>
   );
 }

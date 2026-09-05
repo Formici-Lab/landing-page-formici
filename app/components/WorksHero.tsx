@@ -1,0 +1,23 @@
+import Image from "next/image";
+import Reveal from "./Reveal";
+
+export default function WorksHero() {
+  return (
+    <section className="relative -mt-37 flex h-[720px] w-full items-center justify-center overflow-hidden">
+      {/* Manual image input: place the hero image at /public/images/works-hero.jpg */}
+      <Image
+        src="/images/works-hero.jpg"
+        alt="Formici Creative Lab — collaborative design session"
+        fill
+        priority
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-black/[0.47]" />
+      <Reveal className="relative z-10 w-[865px] max-w-[85vw]">
+        <h1 className="text-center font-sans text-[clamp(32px,6vw,72px)] leading-[1.1] font-extrabold text-white">
+          Design & Development crafted with care.
+        </h1>
+      </Reveal>
+    </section>
+  );
+}
