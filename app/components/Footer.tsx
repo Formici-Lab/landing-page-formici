@@ -6,10 +6,12 @@ const siteLinks = [
   { label: "Works", href: "/works" },
   { label: "The Lab", href: "/the-lab" },
   { label: "Articles", href: "/articles" },
-  { label: "Study Cases", href: "/#study-cases" },
   { label: "Contact", href: "/contact" },
 ];
-const socialLinks = ["Instagram", "Behance", "LinkedIn"];
+const socialLinks = [
+  { label: "Instagram", href: "https://www.instagram.com/formicilab/" },
+  { label: "LinkedIn", href: "#" },
+];
 
 export default function Footer() {
   return (
@@ -29,11 +31,13 @@ export default function Footer() {
         <div className="flex flex-col items-start text-white">
           {socialLinks.map((link) => (
             <a
-              key={link}
-              href="#"
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="font-sans text-lg font-bold px-2.5 py-[5px]"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>

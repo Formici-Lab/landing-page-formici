@@ -2,7 +2,10 @@ import Reveal from "./Reveal";
 import ContactForm from "./ContactForm";
 import SpinningAsterisk from "./SpinningAsterisk";
 
-const socialLinks = ["Instagram", "Behance", "LinkedIn"];
+const socialLinks = [
+  { label: "Instagram", href: "https://www.instagram.com/formicilab/" },
+  { label: "LinkedIn", href: "#" },
+];
 
 export default function ContactSection() {
   return (
@@ -41,11 +44,13 @@ export default function ContactSection() {
           <div className="flex gap-6">
             {socialLinks.map((social) => (
               <a
-                key={social}
-                href="#"
+                key={social.label}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-brown hover:text-orange font-sans text-base font-bold transition-colors"
               >
-                {social}
+                {social.label}
               </a>
             ))}
           </div>
