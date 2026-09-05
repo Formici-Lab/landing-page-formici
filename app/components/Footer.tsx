@@ -5,6 +5,7 @@ const siteLinks = [
   { label: "Home", href: "/" },
   { label: "Works", href: "/works" },
   { label: "The Lab", href: "/the-lab" },
+  { label: "Articles", href: "/articles" },
   { label: "Study Cases", href: "/#study-cases" },
   { label: "Contact", href: "/#contact" },
 ];
