@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import FormiciLogo from "./FormiciLogo";
@@ -18,6 +18,9 @@ type WorkModalProps = {
 };
 
 export default function WorkModal({ project, onClose }: WorkModalProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const drag = useRef({ active: false, startY: 0, startScroll: 0, moved: false });
+
   useEffect(() => {
     if (!project) return;
 
@@ -33,11 +36,42 @@ export default function WorkModal({ project, onClose }: WorkModalProps) {
     };
   }, [project, onClose]);
 
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    // Don't hijack buttons, links or actual scrollbar clicks
+    if ((e.target as HTMLElement).closest("button, a")) return;
+    if (e.button !== 0) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    drag.current = { active: true, startY: e.clientY, startScroll: el.scrollTop, moved: false };
+  };
+
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    const el = scrollRef.current;
+    if (!drag.current.active || !el) return;
+    const delta = e.clientY - drag.current.startY;
+    if (Math.abs(delta) > 3) {
+      drag.current.moved = true;
+      el.setPointerCapture?.(e.pointerId);
+    }
+    el.scrollTop = drag.current.startScroll - delta;
+  };
+
+  const endDrag = () => {
+    drag.current.active = false;
+  };
+
+  const onBackdropClick = () => {
+    // Ignore the click that ends a drag gesture
+    if (drag.current.moved) return;
+    onClose();
+  };
+
   return (
     <AnimatePresence>
       {project && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
+          ref={scrollRef}
+          className="fixed inset-0 z-50 flex touch-pan-y items-start justify-center overflow-y-auto overscroll-contain p-4 select-none sm:p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -45,10 +79,15 @@ export default function WorkModal({ project, onClose }: WorkModalProps) {
           role="dialog"
           aria-modal="true"
           aria-label={project.title}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onPointerLeave={endDrag}
         >
           <motion.div
-            className="absolute inset-0 bg-black/30 backdrop-blur-sm"
-            onClick={onClose}
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm"
+            onClick={onBackdropClick}
           />
 
           <motion.div
@@ -56,12 +95,12 @@ export default function WorkModal({ project, onClose }: WorkModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 max-h-[85vh] w-[100%] max-w-4xl overflow-y-auto rounded-[30px] border border-white/25 bg-white/10 p-6 shadow-xl backdrop-blur-2xl sm:p-10"
+            className="relative z-10 my-auto w-full max-w-2xl cursor-grab rounded-[30px] border border-white/25 bg-white/10 p-6 shadow-xl backdrop-blur-2xl active:cursor-grabbing sm:p-10"
           >
             <button
               onClick={onClose}
               aria-label="Close"
-              className="text-brown absolute top-6 right-6  flex h-6 w-6 items-center justify-center rounded-full border border-white/30 bg-white/20 backdrop-blur-md transition-transform hover:scale-105"
+              className="text-brown absolute top-6 right-6 z-30 flex h-6 w-6 items-center justify-center rounded-full border border-white/30 bg-white/20 backdrop-blur-md transition-transform hover:scale-105"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <path
@@ -87,7 +126,13 @@ export default function WorkModal({ project, onClose }: WorkModalProps) {
                     project.images.length === 1 ? "aspect-16/10" : "aspect-square"
                   }`}
                 >
-                  <Image src={img} alt={`${project.title} ${i + 1}`} fill className="object-cover" />
+                  <Image
+                    src={img}
+                    alt={`${project.title} ${i + 1}`}
+                    fill
+                    draggable={false}
+                    className="object-cover"
+                  />
                 </div>
               ))}
             </div>
