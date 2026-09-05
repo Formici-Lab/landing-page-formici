@@ -7,7 +7,7 @@ const siteLinks = [
   { label: "The Lab", href: "/the-lab" },
   { label: "Articles", href: "/articles" },
   { label: "Study Cases", href: "/#study-cases" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ];
 const socialLinks = ["Instagram", "Behance", "LinkedIn"];
 

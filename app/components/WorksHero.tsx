@@ -13,7 +13,7 @@ export default function WorksHero() {
         className="object-cover"
       />
       <div className="absolute inset-0 bg-black/[0.47]" />
-      <Reveal className="relative z-10 w-[865px] max-w-[85vw]">
+      <Reveal className="relative z-10 w-[800px] max-w-[85vw]">
         <h1 className="text-center font-sans text-[clamp(32px,6vw,72px)] leading-[1.1] font-extrabold text-white">
           Design & Development crafted with care.
         </h1>
