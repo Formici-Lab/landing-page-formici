@@ -60,11 +60,7 @@ export default async function ArticlesPage() {
       <section className="bg-cream min-h-[40vh] px-6 py-16 md:px-[100px] lg:px-[200px]">
         {articles.length === 0 ? (
           <p className="text-brown/70 font-headline text-lg">
-            No articles published yet. Add one in the{" "}
-            <Link href="/studio" className="text-orange font-bold underline">
-              Studio
-            </Link>
-            .
+            Stay tuned — a fresh article is on its way. Coming soon!
           </p>
         ) : (
           <div className="mx-auto grid w-full max-w-[1040px] grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
