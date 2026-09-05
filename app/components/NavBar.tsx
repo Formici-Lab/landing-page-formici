@@ -6,7 +6,7 @@ import FormiciNavLogo from "./FormiciNavLogo";
 
 const navLinks = [
   { label: "HOME", href: "/" },
-  { label: "WORKS", href: "/#works" },
+  { label: "WORKS", href: "/works" },
   { label: "THE LAB", href: "/the-lab" },
   { label: "CONTACT", href: "/#contact" },
 ];
