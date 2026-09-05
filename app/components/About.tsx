@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Reveal from "./Reveal";
 import MotionButton from "./MotionButton";
+import FormiciLogo from "./FormiciLogo";
 
 export default function About() {
   return (
@@ -8,13 +8,7 @@ export default function About() {
       <div className="flex w-full max-w-[1040px] flex-col gap-20 lg:gap-[120px]">
         <div className="flex flex-col items-start justify-between gap-10 lg:flex-row lg:items-center">
           <Reveal>
-            <Image
-              src="/images/formici-logo.svg"
-              alt="Formici"
-              width={601}
-              height={120}
-              className="h-auto w-[300px] max-w-full lg:w-[601px]"
-            />
+            <FormiciLogo className="h-auto w-[300px] max-w-full lg:w-[601px]" />
           </Reveal>
           <Reveal delay={0.15} className="flex w-full flex-col items-start gap-5 lg:w-[371px]">
             <p className="text-brown font-sans text-lg font-medium">
