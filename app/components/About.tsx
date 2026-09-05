@@ -1,5 +1,5 @@
 import Reveal from "./Reveal";
-import MotionButton from "./MotionButton";
+import MotionLinkButton from "./MotionLinkButton";
 import FormiciLogo from "./FormiciLogo";
 
 export default function About() {
@@ -17,9 +17,12 @@ export default function About() {
               strategy, creativity, and exploration to build brands with
               purpose and clarity.
             </p>
-            <MotionButton className="bg-orange text-brown rounded-full px-10 py-5 font-sans text-lg font-bold">
+            <MotionLinkButton
+              href="/the-lab"
+              className="bg-orange text-brown rounded-full px-10 py-5 font-sans text-lg font-bold"
+            >
               More on the Lab
-            </MotionButton>
+            </MotionLinkButton>
           </Reveal>
         </div>
         <div className="flex w-full flex-col items-start justify-between gap-10 lg:flex-row">

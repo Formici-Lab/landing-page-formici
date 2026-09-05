@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import NavBar from "../components/NavBar";
-import WorksHero from "../components/WorksHero";
-import OurWorks from "../components/OurWorks";
+import HeroWorks from "../components/HeroWorks";
+import WorkCarousel from "../components/WorkCarousel";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  title: "Works — Formici Creative Lab",
+  title: "Our Works — Formici Creative Lab",
   description:
-    "A selection of branding, logo, and web projects crafted by Formici Creative Lab — design & development crafted with care.",
+    "A showcase of brands, products, and platforms Formici Creative Lab has helped bring to life.",
 };
 
 export default function Works() {
   return (
     <main>
       <NavBar />
-      <WorksHero />
-      <OurWorks />
+      <HeroWorks />
+      <WorkCarousel />
       <Footer />
     </main>
   );
