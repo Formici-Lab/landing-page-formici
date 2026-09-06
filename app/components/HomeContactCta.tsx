@@ -24,10 +24,10 @@ export default function HomeContactCta() {
             </p>
           </div>
 
-          <div className="flex shrink-0 flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row">
+          <div className="flex shrink-0 flex-wrap gap-3">
             <MotionLinkButton
               href="/contact"
-              className="bg-orange text-brown block rounded-full px-10 py-5 text-center font-sans text-lg font-bold whitespace-nowrap"
+              className="bg-orange text-brown block rounded-full px-7 py-3 text-center font-sans text-base font-bold whitespace-nowrap"
             >
               Contact Us
             </MotionLinkButton>
@@ -35,7 +35,7 @@ export default function HomeContactCta() {
               href={WHATSAPP_HREF}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cream border-cream hover:bg-cream hover:text-brown block rounded-full border-2 px-10 py-5 text-center font-sans text-lg font-bold whitespace-nowrap transition-colors"
+              className="text-cream border-cream hover:bg-cream hover:text-brown block rounded-full border-2 px-7 py-3 text-center font-sans text-base font-bold whitespace-nowrap transition-colors"
             >
               WhatsApp
             </MotionAnchorButton>
