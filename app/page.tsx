@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import HighlightedWork from "./components/HighlightedWork";
 import Clients from "./components/Clients";
+import HomeContactCta from "./components/HomeContactCta";
 import Footer from "./components/Footer";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <About />
       <HighlightedWork />
       <Clients />
+      <HomeContactCta />
       <Footer />
     </main>
   );

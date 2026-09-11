@@ -19,7 +19,7 @@ export default function NavBar() {
   return (
     <div className="sticky inset-x-0 top-0 z-20 flex justify-center px-6 py-10 md:px-[100px]">
       <div className="relative w-full max-w-[1240px]">
-        <div className="flex items-center justify-between rounded-[60px] border border-white/15 bg-white/10 px-6 py-5 backdrop-blur-md md:px-10">
+        <div className="flex items-center justify-between rounded-[60px] border border-white/15 bg-black/20 px-6 py-5 backdrop-blur-md md:px-10">
           <Link href="/" onClick={() => setIsOpen(false)}>
             <FormiciNavLogo className="h-7 w-auto" />
           </Link>
