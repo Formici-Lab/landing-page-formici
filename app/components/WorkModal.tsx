@@ -10,6 +10,11 @@ export type ProjectDetail = {
   category: string;
   description: string;
   images: string[];
+  /**
+   * How the image sits in its frame. Defaults to "cover"; use "contain" for
+   * portrait or transparent artwork (e.g. phone mockups) that cover would crop.
+   */
+  fit?: "cover" | "contain";
 };
 
 type WorkModalProps = {
@@ -131,7 +136,7 @@ export default function WorkModal({ project, onClose }: WorkModalProps) {
                     alt={`${project.title} ${i + 1}`}
                     fill
                     draggable={false}
-                    className="object-cover"
+                    className={project.fit === "contain" ? "object-contain p-3" : "object-cover"}
                   />
                 </div>
               ))}
