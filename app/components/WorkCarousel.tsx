@@ -42,6 +42,35 @@ const projects: ProjectDetail[] = [
       "A modern web platform designed and developed for Vela, focused on clear information architecture and a confident visual presence.",
     images: ["/images/work-vela.png"],
   },
+  {
+    title: "ClearPATH",
+    category: "Website",
+    description:
+      "A network coverage analysis platform for ClearPATH — mapping signal quality by operator and radio access technology, with tooling to search an area and surface weak zones.",
+    images: ["/images/work-clearpath.png"],
+  },
+  {
+    title: "Circular Diagnostics",
+    category: "Website",
+    description:
+      "A web platform built with RMIT University that helps businesses uncover savings, grants, and a verified sustainability rating through a guided circular-economy diagnostic.",
+    images: ["/images/work-rmit.png"],
+  },
+  {
+    title: "Plexa",
+    category: "Website",
+    description:
+      "A construction management SaaS platform for Plexa — bringing procurement, digital tendering, and contract claim workflows together for general contractors and their supply chain.",
+    images: ["/images/work-plexa.png"],
+  },
+  {
+    title: "PPID Kemendag",
+    category: "Mobile Application",
+    description:
+      "A public information mobile application for PPID Kementerian Perdagangan RI, giving citizens direct access to news, public information categories, and service standards.",
+    images: ["/images/work-ppid-kemendag.png"],
+    fit: "contain",
+  },
 ];
 
 const categories = ["All", ...new Set(projects.map((p) => p.category))];
@@ -141,8 +170,17 @@ export default function WorkCarousel() {
               delay={i * 0.05}
               className="flex w-[250px] shrink-0 snap-start flex-col gap-2 sm:w-[350px]"
             >
-              <div className="relative h-[250px] w-full overflow-hidden rounded-[30px] sm:h-[250px]">
-                <Image src={project.images[0]} alt={project.title} fill className="object-cover" />
+              <div
+                className={`relative h-[250px] w-full overflow-hidden rounded-[30px] sm:h-[250px] ${
+                  project.fit === "contain" ? "bg-brown/10" : ""
+                }`}
+              >
+                <Image
+                  src={project.images[0]}
+                  alt={project.title}
+                  fill
+                  className={project.fit === "contain" ? "object-contain p-4" : "object-cover"}
+                />
               </div>
               <button
                 type="button"
