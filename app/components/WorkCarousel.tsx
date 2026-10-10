@@ -71,6 +71,13 @@ const projects: ProjectDetail[] = [
     images: ["/images/work-ppid-kemendag.png"],
     fit: "contain",
   },
+  {
+    title: "Niskarasa",
+    category: "Website",
+    description:
+      "A digital wedding invitation platform for Niskarasa — elegant invitation pages with countdown, event details, and guest wishes, backed by admin and client dashboards for managing templates, guest lists, and personalised links.",
+    images: ["/images/work-niskarasa.png"],
+  },
 ];
 
 const categories = ["All", ...new Set(projects.map((p) => p.category))];
