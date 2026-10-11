@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -23,18 +23,25 @@ const slides = [
   },
 ];
 
-const SLIDE_DURATION = 5000;
+// The first slide hands over sooner so the hero shows it is a slideshow
+// before the visitor has scrolled past it.
+const FIRST_SLIDE_DURATION = 3500;
+const SLIDE_DURATION = 3500;
 
 export default function HeroSlideshow() {
   const [active, setActive] = useState(0);
+  const isFirstSlide = useRef(true);
 
   useEffect(() => {
-    const timer = setInterval(
+    const delay = isFirstSlide.current ? FIRST_SLIDE_DURATION : SLIDE_DURATION;
+    isFirstSlide.current = false;
+
+    const timer = setTimeout(
       () => setActive((current) => (current + 1) % slides.length),
-      SLIDE_DURATION
+      delay
     );
-    return () => clearInterval(timer);
-  }, []);
+    return () => clearTimeout(timer);
+  }, [active]);
 
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden>
